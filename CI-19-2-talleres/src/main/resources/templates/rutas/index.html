@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="fragments.html :: headerfiles"> </head>
+<body>
+	<header th:insert="fragments.html :: nav"></header>
+	<div th:switch="${rutas}" class="container my-5">
+		<div class="row">
+			<div class="col-md-10">
+				<h2 th:case="null">No existen rutas por el momento</h2>
+				<div th:case="*">
+					<h2 class="my-5">Rutas</h2>
+					<table class="table table-striped table-responsive-md">
+						<thead>
+							<tr>
+								<th>Id</th>
+								<th>Numero</th>
+								<th>Dia Inicio</th>
+								<th>Dia Fin</th>
+								<th>Hora Inicio</th>
+								<th>Hora Fin</th>
+								<th>Borrar</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="ruta : ${rutas}">
+								<td th:text="${ruta.id}"></td>
+								<td th:text="${ruta.numero}"></td>
+								<td th:text="${ruta.diaInicio}"></td>
+								<td th:text="${ruta.diaFin}"></td>
+								<td th:text="${ruta.horaInicio}"></td>
+								<td th:text="${ruta.horaFin}"></td>	
+								<td><a th:href="@{/rutas/del/{id}(id=${ruta.id})}"
+									class="btn btn-primary"><i class="fas fa-times"></i></a></td>								
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<p class="my-5">
+					<a href="/rutas/add/" class="btn btn-primary"><i class="fas fa-plus"></i> Agregar ruta</a>
+				</p>
+			</div>
+		</div>
+		<form action="#" th:action="@{/rutas/search/}" th:object="${rutaSearched}" method="post"> 
+			<input type="search" th:field="*{id}" id="id"
+				placeholder="Ingrese el id de la ruta">
+			<input type="submit" name="action" class="btn btn-primary" value="Buscar">
+		</form>
+		<br>
+		<a href="/"><i class="fas fa-home ml-2"></i> Volver al inicio</a>
+	</div>
+</body>
+</html>

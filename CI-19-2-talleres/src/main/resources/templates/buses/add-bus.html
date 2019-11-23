@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="fragments.html :: headerfiles"> </head>
+<body>
+	<header th:insert="fragments.html :: nav"></header>
+	<div class="container my-5">
+		<h2 class="mb-5">Nuevo Bus</h2>
+		<div class="row">
+			<div class="col-md-6">
+				<form action="#" th:action="@{/buses/add/}" th:object="${bus}"
+					method="post">
+					<div class="row">
+						<div class="form-group col-md-6">
+							<label for="capacidad" class="col-form-label">Capacidad</label> <input
+								type="number" min="1" th:field="*{capacidad}" class="form-control" id="capacidad"
+								placeholder="Ingrese la capacidad del bus"> <span
+								th:if="${#fields.hasErrors('capacidad')}" th:errors="*{capacidad}"
+								class="text-danger"></span>
+						</div>
+						<div class="form-group col-md-6">
+							<label for="marca" class="col-form-label">Marca</label> <input
+								type="text" th:field="*{marca}" class="form-control" id="marca"
+								placeholder="Ingrese la marca del bus"> <span
+								th:if="${#fields.hasErrors('marca')}" th:errors="*{marca}"
+								class="text-danger"></span>
+						</div>
+						<div class="form-group col-md-6">
+							<label for="modelo" class="col-form-label">Modelo</label> <input
+								type="number" min="1" th:field="*{modelo}" class="form-control" id="modelo"
+								placeholder="Ingrese el modelo del bus"> <span
+								th:if="${#fields.hasErrors('modelo')}" th:errors="*{modelo}"
+								class="text-danger"></span>
+						</div>
+						<div class="form-group col-md-6">
+							<label for="placa" class="col-form-label">Placa</label> <input
+								type="text" th:field="*{placa}" class="form-control" id="placa"
+								placeholder="Ingrese la placa del bus"> <span
+								th:if="${#fields.hasErrors('placa')}" th:errors="*{placa}"
+								class="text-danger"></span>
+						</div>
+						<div class="form-group col-md-6">
+							<label for="tipo" class="col-form-label">Tipo Bus</label> <select
+								class="form-control-range" th:field="*{tipo}">
+								<option th:each="tip : ${tipos}" th:value="${tip}"
+									class="form-control" th:text="${tip}"
+									th:selected="${bus.tipo=tip}"></option>
+							</select>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-4 mt-3">
+							<input type="submit" name="action" class="btn btn-primary" value="Guardar Bus">
+						</div>
+						<div class="col-md-3 mt-3">
+							<input type="reset" class="btn btn-secondary" value="Clear">
+						</div>
+						<div class="col-md-3 mt-3">
+							<input type="submit" name="action" class="btn btn-secondary" value="Cancel">
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

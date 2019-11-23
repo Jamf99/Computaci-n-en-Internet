@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="fragments.html :: headerfiles"> </head>
+<body>
+	<header th:insert="fragments.html :: nav"></header>
+	<div class="container my-5">
+		<h2 class="mb-5">Nueva Ruta</h2>
+		<div class="row">
+			<div class="col-md-6">
+				<form action="#" th:action="@{/rutas/add/}" th:object="${ruta}"
+					method="post">
+					<div class="row">
+						<div class="form-group col-md-6">
+							<label for="text" class="col-form-label">Numero</label> <input
+								type="number" min="1" th:field="*{numero}" class="form-control" id="numero"> <span
+								th:if="${#fields.hasErrors('numero')}" th:errors="*{numero}"
+								class="text-danger"></span>
+						</div>
+						<div class="form-group col-md-6">
+							<label for="diaInicio" class="col-form-label">Dia Inicio</label> <input
+								type="number" min="1" max="7" placeholder="Valor entre 1 y 7" th:field="*{diaInicio}" class="form-control" id="diaInicio"> <span
+								th:if="${#fields.hasErrors('diaInicio')}" th:errors="*{diaInicio}"
+								class="text-danger"></span>
+						</div>
+						<div class="form-group col-md-6">
+							<label for="diaFin" class="col-form-label">Dia Fin</label> <input
+								type="number" min="1" max="7" placeholder="Valor entre 1 y 7" th:field="*{diaFin}" class="form-control" id="diaFin"> <span
+								th:if="${#fields.hasErrors('diaFin')}" th:errors="*{diaFin}"
+								class="text-danger"></span>
+						</div>
+						<div class="form-group col-md-6">
+							<label for="horaInicio" class="col-form-label">Hora Inicio</label> <input
+								type="number" min="1" placeholder="Segundos" th:field="*{horaInicio}" class="form-control" id="horaInicio"> <span
+								th:if="${#fields.hasErrors('horaInicio')}" th:errors="*{horaInicio}"
+								class="text-danger"></span>
+						</div>
+						<div class="form-group col-md-6">
+							<label for="number" class="col-form-label">Hora Fin</label> <input
+								type="number" min="1" placeholder="Segundos" th:field="*{horaFin}" class="form-control" id="horaFin"> <span
+								th:if="${#fields.hasErrors('horaFin')}" th:errors="*{horaFin}"
+								class="text-danger"></span>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-4 mt-3">
+							<input type="submit" name="action" class="btn btn-primary" value="Guardar Ruta">
+						</div>
+						<div class="col-md-3 mt-3">
+							<input type="reset" class="btn btn-secondary" value="Clear">
+						</div>
+						<div class="col-md-3 mt-3">
+							<input type="submit" name="action" class="btn btn-secondary" value="Cancel">
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

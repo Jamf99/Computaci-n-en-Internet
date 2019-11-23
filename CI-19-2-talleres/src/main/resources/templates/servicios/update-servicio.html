@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="fragments.html :: headerfiles"> </head>
+<body>
+	<header th:insert="fragments.html :: nav"></header>
+	<div class="container my-5">
+		<h2 class="mb-5">Editar servicio</h2>
+		<div class="row">
+			<div class="col-md-6">
+				<form action="#" th:object="${servicio}"
+					th:action="@{/servicios/edit/{idHash}(idHash=${servicio.idHash})}" method="post">
+					<div class="row">
+						<div class="form-group col-md-6">
+							<label for="tmio1Conductore" class="col-form-label">Cedula del conductor</label> <select
+								th:field="*{cedulaConductor}">
+								<option th:each="cond : ${conductores}" th:value="${cond.cedula}"
+									class="form-control" th:text="${cond.cedula}"
+									th:selected="${servicio.cedulaConductor=cond}"></option>
+							</select> <span th:if="${#fields.hasErrors('cedulaConductor')}"
+								th:errors="*{cedulaConductor}" class="text-danger"></span>
+						</div>
+						<div class="form-group col-md-6">
+							<label for="tmio1Bus" class="col-form-label">Id del bus</label> <select
+								th:field="*{idBus}">
+								<option th:each="bu : ${buses}" th:value="${bu.id}"
+									class="form-control" th:text="${bu.id}"
+									th:selected="${servicio.idBus=bu}"></option>
+							</select> <span th:if="${#fields.hasErrors('idBus')}"
+								th:errors="*{idBus}" class="text-danger"></span>
+						</div>
+						<div class="form-group col-md-6">
+							<label for="tmio1Ruta" class="col-form-label">Id de la ruta</label> <select
+								th:field="*{idRuta}">
+								<option th:each="rut : ${rutas}" th:value="${rut.id}"
+									class="form-control" th:text="${rut.id}"
+									th:selected="${servicio.idRuta=rut}"></option>
+							</select> <span th:if="${#fields.hasErrors('idRuta')}"
+								th:errors="*{idRuta}" class="text-danger"></span>
+						</div>
+						<div class="form-group col-md-6">
+							<label for="fechaInicio" class="col-form-label">Fecha Inicio</label>
+							<input type="date" th:field="*{fechaInicio}" class="form-control"
+								id="fechaInicio" > <span
+								th:if="${#fields.hasErrors('fechaInicio')}"
+								th:errors="*{fechaInicio}" class="text-danger"></span>
+						</div>
+						<div class="form-group col-md-6">
+							<label for="fechaFin" class="col-form-label">Fecha Fin</label>
+							<input type="date" th:field="*{fechaFin}" class="form-control"
+								id="fechaFin" > <span
+								th:if="${#fields.hasErrors('fechaFin')}"
+								th:errors="*{fechaInicio}" class="text-danger"></span>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6 mt-3">
+							<input type="submit" name="action" class="btn btn-primary"
+								value="Add Service">
+						</div>
+						<div class="col-md-3 mt-3">
+							<input type="reset" class="btn btn-secondary" value="Clear">
+						</div>
+						<div class="col-md-3 mt-3">
+							<input type="submit" name="action" class="btn btn-secondary"
+								value="Cancel">
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
