@@ -17,6 +17,8 @@ import co.edu.icesi.ci.talleres.model.Tmio1Bus;
 @Scope("singleton")
 @Transactional
 public class BusDAO implements IBusDAO{
+	
+	//prueba Git
 
 	@PersistenceContext
 	private EntityManager entityManager;
